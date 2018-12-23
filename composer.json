@@ -1,0 +1,35 @@
+{
+  "name": "zenthangplus/web-scraper",
+  "description": "A crawler to collect data in many websites.",
+  "keywords": [
+    "scraper",
+    "crawler",
+    "package"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Zen Thang",
+      "email": "zenthangplus@gmail.com"
+    }
+  ],
+  "type": "library",
+  "require": {
+    "php": ">=7.1",
+    "ext-dom": "*",
+    "ext-curl": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "6.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Zenthangplus\\WebScraper\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  }
+}
