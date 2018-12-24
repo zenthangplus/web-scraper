@@ -9,7 +9,7 @@ use Zenthangplus\WebScraper\Contracts\CrawlerResponseInterface;
  * Class ParserAbstraction
  * @package Zenthangplus\WebScraper\Contracts
  */
-abstract class ParserAbstraction
+abstract class ParserAbstraction extends DOMDocument
 {
     /**
      * Document's content
@@ -17,11 +17,6 @@ abstract class ParserAbstraction
      * @var string
      */
     private $content;
-
-    /**
-     * @var DOMDocument
-     */
-    protected $dom;
 
     /**
      * ParserAbstraction constructor.
@@ -33,19 +28,18 @@ abstract class ParserAbstraction
         $this->content = $crawlerResponse->getContent();
 
         // Init DOM Document
-        $this->dom = new DOMDocument();
+        parent::__construct();
 
         // Load content into DOM
-        $this->loadContent($this->dom);
+        $this->loadContent();
     }
 
     /**
      * Load content into DOM document
      *
-     * @param DOMDocument &$dom
      * @return mixed
      */
-    abstract protected function loadContent(DOMDocument &$dom);
+    abstract protected function loadContent();
 
     /**
      * Get document's content
@@ -55,15 +49,5 @@ abstract class ParserAbstraction
     public function getContent(): string
     {
         return $this->content;
-    }
-
-    /**
-     * Get DOM object
-     *
-     * @return DOMDocument
-     */
-    public function getDom(): DOMDocument
-    {
-        return $this->dom;
     }
 }

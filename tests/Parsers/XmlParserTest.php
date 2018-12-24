@@ -49,26 +49,13 @@ class XmlParserTest extends TestCase
     }
 
     /**
-     * Test loadContent method working exactly
-     *
-     * @covers \Zenthangplus\WebScraper\Parsers\XmlParser::loadContent
-     */
-    public function testLoadContentExactly()
-    {
-        $this->assertEquals(
-            'test-node-content',
-            $this->parser->getDom()->getElementsByTagName('testNode')->item(0)->textContent
-        );
-    }
-
-    /**
      * Test dom is DOM object
      *
-     * @covers \Zenthangplus\WebScraper\Parsers\XmlParser::getDom
+     * @covers \Zenthangplus\WebScraper\Parsers\XmlParser
      */
-    public function testGetDom()
+    public function testIsDomObject()
     {
-        $this->assertInstanceOf(\DOMDocument::class, $this->parser->getDom());
+        $this->assertInstanceOf(\DOMDocument::class, $this->parser);
     }
 
     /**
@@ -79,5 +66,18 @@ class XmlParserTest extends TestCase
     public function testGetContent()
     {
         $this->assertEquals($this->content, $this->parser->getContent());
+    }
+
+    /**
+     * Test loadContent method working exactly
+     *
+     * @covers \Zenthangplus\WebScraper\Parsers\XmlParser::loadContent
+     */
+    public function testLoadContentExactly()
+    {
+        $this->assertEquals(
+            'test-node-content',
+            $this->parser->getElementsByTagName('testNode')->item(0)->textContent
+        );
     }
 }

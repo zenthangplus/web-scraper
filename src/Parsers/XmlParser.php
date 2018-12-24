@@ -8,11 +8,10 @@ use Zenthangplus\WebScraper\ParserAbstraction;
 class XmlParser extends ParserAbstraction
 {
     /**
-     * @param DOMDocument $dom
      * @return mixed|void
      */
-    public function loadContent(DOMDocument &$dom)
+    public function loadContent()
     {
-        $dom->loadXML($this->getContent());
+        $this->loadXML($this->getContent());
     }
 }
