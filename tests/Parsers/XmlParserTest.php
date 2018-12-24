@@ -6,6 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Tests\Traits\InvokeInaccessible;
 use Zenthangplus\WebScraper\CrawlerResponse;
 use Zenthangplus\WebScraper\Parsers\XmlParser;
+use Zenthangplus\WebScraper\Exceptions\ParserException;
 
 /**
  * Class CrawlerResponseTest
@@ -32,6 +33,8 @@ class XmlParserTest extends TestCase
 
     /**
      * Setup unit tests
+     *
+     * @throws ParserException
      */
     protected function setUp()
     {

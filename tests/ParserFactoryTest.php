@@ -4,6 +4,7 @@ namespace Tests;
 
 use PHPUnit\Framework\TestCase;
 use Zenthangplus\WebScraper\CrawlerResponse;
+use Zenthangplus\WebScraper\Exceptions\ParserException;
 use Zenthangplus\WebScraper\Exceptions\ContentTypeException;
 use Zenthangplus\WebScraper\ParserFactory;
 use Zenthangplus\WebScraper\Parsers\HtmlParser;
@@ -17,12 +18,14 @@ use Zenthangplus\WebScraper\Parsers\XmlParser;
 class ParserFactoryTest extends TestCase
 {
     /**
+     *
      * Test parser factory return HtmlParser exactly
      *
      * @covers \Zenthangplus\WebScraper\ParserFactory::make
      * @covers \Zenthangplus\WebScraper\ParserFactory::toParser
      *
-     * @throws \Zenthangplus\WebScraper\Exceptions\ContentTypeException
+     * @throws ContentTypeException
+     * @throws ParserException
      */
     public function testReturnHtmlParser()
     {
@@ -39,7 +42,8 @@ class ParserFactoryTest extends TestCase
      * @covers \Zenthangplus\WebScraper\ParserFactory::make
      * @covers \Zenthangplus\WebScraper\ParserFactory::toParser
      *
-     * @throws \Zenthangplus\WebScraper\Exceptions\ContentTypeException
+     * @throws ContentTypeException
+     * @throws ParserException
      */
     public function testReturnXmlParser()
     {
@@ -56,13 +60,32 @@ class ParserFactoryTest extends TestCase
      * @covers \Zenthangplus\WebScraper\ParserFactory::make
      * @covers \Zenthangplus\WebScraper\ParserFactory::toParser
      *
-     * @throws \Zenthangplus\WebScraper\Exceptions\ContentTypeException
+     * @throws ContentTypeException
+     * @throws ParserException
      */
-    public function testThrowExceptionContentType()
+    public function testThrowContentTypeException()
     {
         $this->expectException(ContentTypeException::class);
         $crawlerResponse = new CrawlerResponse;
         $crawlerResponse->setContentType('an-error-content-type');
+        $crawlerResponse->setContent('test-content');
+        ParserFactory::make($crawlerResponse);
+    }
+
+    /**
+     * Test parser factory throw exception about parse data
+     *
+     * @covers \Zenthangplus\WebScraper\ParserFactory::make
+     * @covers \Zenthangplus\WebScraper\ParserFactory::toParser
+     *
+     * @throws ContentTypeException
+     * @throws ParserException
+     */
+    public function testThrowParserException()
+    {
+        $this->expectException(ParserException::class);
+        $crawlerResponse = new CrawlerResponse;
+        $crawlerResponse->setContentType('text/xml');
         $crawlerResponse->setContent('test-content');
         ParserFactory::make($crawlerResponse);
     }

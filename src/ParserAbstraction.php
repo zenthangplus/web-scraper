@@ -4,6 +4,7 @@ namespace Zenthangplus\WebScraper;
 
 use DOMDocument;
 use Zenthangplus\WebScraper\Contracts\CrawlerResponseInterface;
+use Zenthangplus\WebScraper\Exceptions\ParserException;
 
 /**
  * Class ParserAbstraction
@@ -21,6 +22,7 @@ abstract class ParserAbstraction extends DOMDocument
     /**
      * ParserAbstraction constructor.
      * @param CrawlerResponseInterface $crawlerResponse
+     * @throws ParserException
      */
     public function __construct(CrawlerResponseInterface $crawlerResponse)
     {
@@ -31,7 +33,9 @@ abstract class ParserAbstraction extends DOMDocument
         parent::__construct();
 
         // Load content into DOM
-        $this->loadContent();
+        if (!$this->loadContent()) {
+            throw new ParserException("Couldn't parse this document.");
+        }
     }
 
     /**
@@ -39,7 +43,7 @@ abstract class ParserAbstraction extends DOMDocument
      *
      * @return mixed
      */
-    abstract protected function loadContent();
+    abstract protected function loadContent(): bool;
 
     /**
      * Get document's content

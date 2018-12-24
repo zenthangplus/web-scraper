@@ -3,9 +3,9 @@
 namespace Zenthangplus\WebScraper\Exceptions;
 
 /**
- * Class ContentTypeException
+ * Class ParserException
  * @package Zenthangplus\WebScraper\Exceptions
  */
-class ContentTypeException extends \Exception
+class ParserException extends \Exception
 {
 }

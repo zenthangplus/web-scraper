@@ -3,6 +3,7 @@
 namespace Zenthangplus\WebScraper;
 
 use Zenthangplus\WebScraper\Contracts\CrawlerResponseInterface;
+use Zenthangplus\WebScraper\Exceptions\ParserException;
 use Zenthangplus\WebScraper\Exceptions\ContentTypeException;
 use Zenthangplus\WebScraper\Parsers\HtmlParser;
 use Zenthangplus\WebScraper\Parsers\XmlParser;
@@ -28,8 +29,9 @@ class ParserFactory
     }
 
     /**
-     * @return ParserAbstraction
+     * @return HtmlParser|XmlParser
      * @throws ContentTypeException
+     * @throws Exceptions\ParserException
      */
     public function toParser()
     {
@@ -55,8 +57,9 @@ class ParserFactory
      * Make new parser from crawler's response
      *
      * @param CrawlerResponseInterface $response
-     * @return ParserAbstraction
+     * @return HtmlParser|XmlParser
      * @throws ContentTypeException
+     * @throws ParserException
      */
     public static function make(CrawlerResponseInterface $response)
     {

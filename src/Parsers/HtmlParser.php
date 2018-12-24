@@ -5,13 +5,18 @@ namespace Zenthangplus\WebScraper\Parsers;
 use DOMDocument;
 use Zenthangplus\WebScraper\ParserAbstraction;
 
+/**
+ * Class HtmlParser
+ * @package Zenthangplus\WebScraper\Parsers
+ */
 class HtmlParser extends ParserAbstraction
 {
     /**
-     * @return mixed|void
+     * @return bool
      */
-    protected function loadContent()
+    protected function loadContent(): bool
     {
-        $this->loadHTML($this->getContent());
+        // Using @ to ignore warning when document is not pretty
+        return @$this->loadHTML($this->getContent());
     }
 }
