@@ -1,6 +1,6 @@
 {
   "name": "zenthangplus/web-scraper",
-  "description": "A crawler to collect data in many websites.",
+  "description": "A small package for web scraping.",
   "keywords": [
     "scraper",
     "crawler",
