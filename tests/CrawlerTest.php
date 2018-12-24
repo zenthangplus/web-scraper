@@ -4,9 +4,10 @@ namespace Tests;
 
 use PHPUnit\Framework\TestCase;
 use Tests\Traits\InvokeInaccessible;
-use Zenthangplus\WebScraper\Contracts\CrawlerResponseInterface;
 use Zenthangplus\WebScraper\Crawler;
 use Zenthangplus\WebScraper\CrawlerResponse;
+use Zenthangplus\WebScraper\Contracts\CrawlerResponseInterface;
+use Zenthangplus\WebScraper\Exceptions\RequestException;
 
 /**
  * Class CrawlerTest
@@ -46,6 +47,18 @@ class CrawlerTest extends TestCase
     {
         unset($this->url);
         unset($this->crawler);
+    }
+
+    /**
+     * Test method crawl throw request exception
+     *
+     * @throws RequestException
+     */
+    public function testCrawlerThrowRequestException()
+    {
+        $this->expectException(RequestException::class);
+        $crawler = new Crawler('http://abc', new CrawlerResponse);
+        $crawler->crawl();
     }
 
     /**
@@ -90,6 +103,8 @@ class CrawlerTest extends TestCase
      * Test crawl method respond exactly
      *
      * @covers \Zenthangplus\WebScraper\Crawler::crawl
+     *
+     * @throws RequestException
      */
     public function testCrawlRespondExactly()
     {
@@ -101,6 +116,8 @@ class CrawlerTest extends TestCase
      * Test content type which returned by crawler
      *
      * @covers \Zenthangplus\WebScraper\Crawler::crawl
+     *
+     * @throws RequestException
      */
     public function testCrawlContentType()
     {
@@ -112,6 +129,8 @@ class CrawlerTest extends TestCase
      * Test headers data which returned by crawler
      *
      * @covers \Zenthangplus\WebScraper\Crawler::crawl
+     *
+     * @throws RequestException
      */
     public function testCrawlHeaders()
     {
@@ -121,6 +140,8 @@ class CrawlerTest extends TestCase
 
     /**
      * Test content data which returned by crawler
+     *
+     * @throws RequestException
      */
     public function testCrawlContent()
     {

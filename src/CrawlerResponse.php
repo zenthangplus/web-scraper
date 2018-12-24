@@ -16,16 +16,6 @@ class CrawlerResponse implements CrawlerResponseInterface
     private $url;
 
     /**
-     * @var int
-     */
-    private $error_code;
-
-    /**
-     * @var string
-     */
-    private $error_message;
-
-    /**
      * @var array
      */
     private $headers;
@@ -58,56 +48,6 @@ class CrawlerResponse implements CrawlerResponseInterface
     public function setUrl(string $url)
     {
         $this->url = $url;
-    }
-
-    /**
-     * Check if response is error
-     *
-     * @return bool
-     */
-    public function isError(): bool
-    {
-        return $this->error_code != 0;
-    }
-
-    /**
-     * Get error code
-     *
-     * @return int
-     */
-    public function getErrorCode(): int
-    {
-        return $this->error_code;
-    }
-
-    /**
-     * Set error code
-     *
-     * @param int $error_code
-     */
-    public function setErrorCode(int $error_code)
-    {
-        $this->error_code = $error_code;
-    }
-
-    /**
-     * Get error message
-     *
-     * @return string
-     */
-    public function getErrorMessage(): string
-    {
-        return $this->error_message;
-    }
-
-    /**
-     * Set error message
-     *
-     * @param string $error_message
-     */
-    public function setErrorMessage(string $error_message)
-    {
-        $this->error_message = $error_message;
     }
 
     /**

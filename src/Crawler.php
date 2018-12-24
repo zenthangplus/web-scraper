@@ -2,6 +2,7 @@
 
 namespace Zenthangplus\WebScraper;
 
+use Zenthangplus\WebScraper\Exceptions\RequestException;
 use Zenthangplus\WebScraper\Contracts\CrawlerResponseInterface;
 
 /**
@@ -75,6 +76,9 @@ class Crawler
 
     /**
      * Start crawl data
+     *
+     * @return CrawlerResponseInterface
+     * @throws RequestException
      */
     public function crawl(): CrawlerResponseInterface
     {
@@ -89,13 +93,13 @@ class Crawler
 
         // Check curl error
         if ($error_code = curl_errno($ch)) {
-            // Set response's error
-            $this->response->setErrorCode($error_code);
-            $this->response->setErrorMessage(curl_error($ch));
+            $error_message = curl_error($ch);
 
             // Close Curl
             curl_close($ch);
-            return $this->response;
+
+            // Throw an exception
+            throw new RequestException($error_message, $error_code);
         }
 
         // Get response's headers

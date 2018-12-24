@@ -23,41 +23,6 @@ interface CrawlerResponseInterface
     public function setUrl(string $url);
 
     /**
-     * Check if response is error
-     *
-     * @return bool
-     */
-    public function isError(): bool;
-
-    /**
-     * Get error code
-     *
-     * @return int
-     */
-    public function getErrorCode(): int;
-
-    /**
-     * Set error code
-     *
-     * @param int $error_code
-     */
-    public function setErrorCode(int $error_code);
-
-    /**
-     * Get error message
-     *
-     * @return string
-     */
-    public function getErrorMessage(): string;
-
-    /**
-     * Set error message
-     *
-     * @param string $error_message
-     */
-    public function setErrorMessage(string $error_message);
-
-    /**
      * Get response's content type
      *
      * @return string
