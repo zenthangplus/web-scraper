@@ -10,7 +10,7 @@ class HtmlParser extends ParserAbstraction
     /**
      * @return mixed|void
      */
-    public function loadContent()
+    protected function loadContent()
     {
         $this->loadHTML($this->getContent());
     }

@@ -10,7 +10,7 @@ class XmlParser extends ParserAbstraction
     /**
      * @return mixed|void
      */
-    public function loadContent()
+    protected function loadContent()
     {
         $this->loadXML($this->getContent());
     }
